@@ -1,4 +1,5 @@
 import Categories from "./Components/Categories";
+import CreatAccount from "./Components/CreatAccount";
 import Delivery from "./Components/Delivery";
 import Featured from "./Components/Featured";
 import Meal from "./Components/Meal";
@@ -18,6 +19,7 @@ function App() {
       <Meal/>
       <Categories/>
       <NewsLetter/>
+      <CreatAccount/>
     </div>
   );
 }
