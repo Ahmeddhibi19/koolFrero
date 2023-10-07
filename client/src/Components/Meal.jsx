@@ -1,9 +1,42 @@
 import React ,{useState}from 'react'
 import { mealdata } from '../data/data'
 import{ArrowSmRightIcon} from "@heroicons/react/outline";
+import { FaHeart, FaStar, FaHome } from 'react-icons/fa';
+import { myfavourite } from '../data/data';
+
 
 const Meal = () => {
     const [food,setFood]=useState(mealdata);
+    //const [favourite,setfavourite]=useState(false);
+    const [favourite, setFavourite] = useState(myfavourite);
+
+    const toggleLike = (itemId) => {
+        setFood((prevFood) =>
+          prevFood.map((item) => {
+            if (item.id === itemId) {
+              const updatedItem = { ...item, liked: !item.liked };
+              if (updatedItem.liked) {
+                // Get the existing likedItems object from local storage
+                /*const likedItems = JSON.parse(localStorage.getItem('likedItems')) || {};
+      
+                // Add the current item's ID and name to the likedItems object
+                likedItems[updatedItem.id] = updatedItem.name;
+      
+                // Store the updated likedItems object in local storage
+                localStorage.setItem('likedItems', JSON.stringify(likedItems));*/
+                localStorage.setItem(updatedItem.id,JSON.stringify(updatedItem))
+              } else {
+                // Handle unliking if needed
+              }
+              return updatedItem;
+            }
+            return item;
+          })
+        );
+      };
+      
+      
+    
     const filtercategory=(category)=>{
         setFood(
             mealdata.filter((item)=>{
@@ -13,7 +46,7 @@ const Meal = () => {
     }
   return (
     <div className='max-w-[1520px] px-4 m-auto py-12'>
-        <h1 className='text-orange-500 font-bold text-2xl text-center py-2'>Our Meals</h1>
+        <h1 className='text-orange-500 font-bold text-2xl text-center py-2'>Our Menu</h1>
         <div className='flex flex-col lg:flex-row justify-center'>
                 <div className='flex justify-center lg:w-[300px] md:justify-center'>
                     {/* Buttons for Large Screens */}
@@ -66,7 +99,25 @@ const Meal = () => {
                             <p className='bg-orange-700 h-10 w-18 rounded-full -mt-7 text-white py-0 px-2 border-8 border-white font-bold'>{item.price}</p>
                         </div>
                         <div className='pl-2 py-4 -mt-7'>
-                            <p className='flex  items-center text-indigo-600 cursor-pointer w-[110px]'>View More<ArrowSmRightIcon className='w-5 ml-2'/></p>
+                            <p className='flex  items-center text-indigo-600 cursor-pointer w-[110px]'>View More
+                                <ArrowSmRightIcon className='w-5 ml-2'/>
+                                {
+                                    
+                                    }
+                                    <button onClick={() => toggleLike(item.id)} className='border-none'>
+                                        {
+                                            item.liked ? (
+                                                
+                                                <FaHeart color="red" />
+                                              
+                                            ) : (
+                                                
+                                                <FaHeart color="gray" />
+                                             
+                                            )
+                                        }
+                                    </button>
+                            </p>
                         </div>
                     </div>
                 ))

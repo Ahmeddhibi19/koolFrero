@@ -7,3 +7,47 @@
     @apply border border-black rounded-xl px-5 py-1
   }
 }
+/* Common styles for all screen sizes */
+/*.a, .b, .c {
+  width: 100%;
+}
+
+/* Small screen styles */
+@media screen and (max-width: 768px) {
+  .a {
+    order: 1;
+  }
+  .b {
+    order: 3;
+  }
+  .c {
+    order: 2;
+  }
+}
+
+/* Medium and large screen styles 
+@media screen and (min-width: 769px) {
+  .w-full {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .a {
+    order: 1;
+    width: calc(30% - 10px); /* Adjust the width and margin as needed 
+    margin-right: 10px;
+  }
+
+  .b {
+    order: 2;
+    width: calc(40% - 10px); /* Adjust the width and margin as needed 
+    margin-right: 10px;
+  }
+
+  .c {
+    order: 3;
+    width: calc(30% - 10px); /* Adjust the width and margin as needed 
+  }
+}*/

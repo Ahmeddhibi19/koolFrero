@@ -1,3 +1,4 @@
+import Meal from "../Components/Meal";
 export const topPicks=[
     {
         id:1,
@@ -203,3 +204,4 @@ export const categories=[
         imge:'https://www.foodandwine.com/thmb/ckc6L6xKox0WfpfO6dMkuVGPQOY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Angel-Food-Cake-with-Three-Berry-Compote-FT-RECIPE0323-541a780b871441e0ab14383ee38acc44.jpg'
     }
 ]
+export const myfavourite=[ ];

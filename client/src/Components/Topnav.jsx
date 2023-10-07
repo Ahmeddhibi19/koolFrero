@@ -4,20 +4,24 @@ import {BsFillCartFill,BsPerson,} from 'react-icons/bs'
 import {TbTruckReturn} from 'react-icons/tb'
 import {FaUserFreinds,FaGoogleWallet} from 'react-icons/fa'
 import {MdHelp,MdOutlineFavorite} from 'react-icons/md'
+import { Link ,NavLink} from 'react-router-dom'
 
-const Topnav = () => {
+const Topnav = (props) => {
    const [Sidenav,setSidenav]=useState(false);
    console.log(Sidenav);
   return (
-    <div className='max-w-[1520] mx-auto p-4'>
+    <div className='max-w-[1520px] mx-auto p-4'>
         <div className='flex justify-between items-center'>
             <div className='flex items-center'>
                 <div onClick={()=> setSidenav(!Sidenav)} className='cursor-pointer'>
                     <AiOutlineMenu size={25}/>
                 </div>
-                <h1 className='text-2xl sm:text-2xl lg:text-4xl px-2'>Kool
-                    <span className='font-bold text-orange-700'>Frero</span>
-                </h1>
+                <Link to='/'>
+                    <h1 className='text-2xl sm:text-2xl lg:text-4xl px-2'>Kool
+                        <span className='font-bold text-orange-700'>Frero</span>
+                    </h1>
+                </Link>
+                
                 <div className='hidden lg:flex items-center bg-gray-200 rounded-full p-1 text-[14px]'>
                     <p className='bg-orange-700 text-white rounded-full p-2 text-[17.5px] '>Free</p>
                     <p className='p-2 text-[17.5px]'>Delivery</p>
@@ -40,14 +44,15 @@ const Topnav = () => {
                 <h2 className='text-2xl p-4 cursor-pointer'>Kool<span className='text-orange-700 font-bold'>Frero</span></h2>
                 <nav>
                     <ul className='flex flex-col p-4 text-gray-900'>
-                        <li className='text-xl py-4 flex cursor-pointer'>
-                            <BsPerson size={25} className='mr-4 text-white bg-black rounded-full'/> My account
+                        <li className='text-xl py-4 flex flex-row items-center cursor-pointer  '>
+                            <NavLink to={props.myaccount} onClick={()=>setSidenav(!Sidenav)} className='text-xl py-4 flex flex-row items-center cursor-pointer'><BsPerson size={25} className='mr-4 text-white bg-black rounded-full'/> My account</NavLink>
                         </li>
                         <li className='text-xl py-4 flex cursor-pointer'>
                             <TbTruckReturn size={25} className='mr-4 text-white bg-black rounded-full'/> Delivery
                         </li>
                         <li className='text-xl py-4 flex cursor-pointer'>
-                            <MdOutlineFavorite size={25} className='mr-4 text-white bg-black rounded-full'/> My Favourite
+                            
+                            <NavLink to={props.myFavourite} onClick={()=>setSidenav(!Sidenav)} className='text-xl py-4 flex flex-row items-center cursor-pointer'><MdOutlineFavorite size={25} className='mr-4 text-white bg-black rounded-full'/> My Favourite</NavLink>
                         </li>
                         <li className='text-xl py-4 flex cursor-pointer'>
                             <FaGoogleWallet size={25} className='mr-4 text-white bg-black rounded-full'/> My Wallet
