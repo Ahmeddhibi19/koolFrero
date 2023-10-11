@@ -13,9 +13,13 @@ import Avis from "./Components/Avis";
 import Notification from "./Components/Notification";
 import UserFriends from "./Components/UserFriends";
 import MyFavourite from "./Components/MyFavourite";
+import Cart from "./Components/Cart";
+import { useState } from "react";
 
 
 function App() {
+  const [cart, setCart] = useState([]);
+
   return (
     <div className="App">
       <Topnav myaccount='myaccount' myFavourite='myfavourite' />
@@ -26,9 +30,10 @@ function App() {
         <Featured />
         <Delivery />
         <TopPicks />
-        <Meal />
+        <Meal cart={cart} setCart={setCart} />
         <Categories />
         <NewsLetter />
+        <Cart cart={cart} />
       </>} />
       <Route path="login" element={<LogIn />} />
       <Route path="/login/creataccount" element={<CreatAccount />} />

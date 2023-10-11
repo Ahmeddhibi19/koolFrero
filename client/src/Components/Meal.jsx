@@ -1,16 +1,22 @@
-import React ,{useState}from 'react'
+import React ,{useState,useEffect}from 'react'
 import { mealdata } from '../data/data'
 import{ArrowSmRightIcon} from "@heroicons/react/outline";
 import { FaHeart, FaStar, FaHome } from 'react-icons/fa';
 import { myfavourite } from '../data/data';
 
+//export const addedtocart=[];
 
-const Meal = () => {
+const Meal = ( props ) => {
+    
+    
     const [food,setFood]=useState(mealdata);
+    const { cart, setCart } = props;
     //const [favourite,setfavourite]=useState(false);
-    const [favourite, setFavourite] = useState(myfavourite);
+    //const [favourite, setFavourite] = useState(myfavourite);
+    //const [foodtocart,setFoodtocart]=useState(addedtocart);
 
     const toggleLike = (itemId) => {
+         
         setFood((prevFood) =>
           prevFood.map((item) => {
             if (item.id === itemId) {
@@ -25,6 +31,7 @@ const Meal = () => {
                 // Store the updated likedItems object in local storage
                 localStorage.setItem('likedItems', JSON.stringify(likedItems));*/
                 localStorage.setItem(updatedItem.id,JSON.stringify(updatedItem))
+                indexedDB.cmp(updatedItem.id,JSON.stringify(updatedItem))
               } else {
                 // Handle unliking if needed
               }
@@ -34,6 +41,45 @@ const Meal = () => {
           })
         );
       };
+      const toggleCart = (itemId) => {
+        setFood((prevFood) =>
+          prevFood.map((item) => {
+            let updatedItem; // Declare updatedItem here
+      
+            if (item.id === itemId) {
+              updatedItem = { ...item, added: !item.added };
+              if (updatedItem.added) {
+                // Add to cart
+                setCart((prevCart) => [...prevCart, updatedItem]);
+                localStorage.setItem(updatedItem.id,JSON.stringify(updatedItem))
+              } else {
+                // Remove from cart
+                setCart((prevCart) => prevCart.filter((cartItem) => cartItem.id !== updatedItem.id));
+              }
+            }
+            return updatedItem || item; // Return the item if updatedItem is undefined
+          })
+        );
+      };
+      
+      useEffect(() => {
+        console.log(cart);
+      }, [cart]);
+      
+    
+      
+    
+      
+    
+    
+    
+    
+      
+      
+    
+      
+      
+      
       
       
     
@@ -44,6 +90,8 @@ const Meal = () => {
             })
         )
     }
+    
+    
   return (
     <div className='max-w-[1520px] px-4 m-auto py-12'>
         <h1 className='text-orange-500 font-bold text-2xl text-center py-2'>Our Menu</h1>
@@ -98,12 +146,12 @@ const Meal = () => {
                             <p className='font-bold'>{item.name}</p>
                             <p className='bg-orange-700 h-10 w-18 rounded-full -mt-7 text-white py-0 px-2 border-8 border-white font-bold'>{item.price}</p>
                         </div>
-                        <div className='pl-2 py-4 -mt-7'>
-                            <p className='flex  items-center text-indigo-600 cursor-pointer w-[110px]'>View More
+                        <div className='pl-2 py-4 -mt-7 flex justify-between'>
+                            <p className='flex  items-center  text-indigo-600 cursor-pointer w-[180px]'>View More
                                 <ArrowSmRightIcon className='w-5 ml-2'/>
-                                {
+                                
                                     
-                                    }
+                                    
                                     <button onClick={() => toggleLike(item.id)} className='border-none'>
                                         {
                                             item.liked ? (
@@ -118,6 +166,9 @@ const Meal = () => {
                                         }
                                     </button>
                             </p>
+                            <button onClick={()=>toggleCart(item.id)}  className='border-none bg-blue-600 text-white rounded-none shadow-lg-black'>Add to cart 
+
+                            </button>
                         </div>
                     </div>
                 ))
@@ -128,4 +179,7 @@ const Meal = () => {
   )
 }
 
+
+
 export default Meal
+export const cart = [];

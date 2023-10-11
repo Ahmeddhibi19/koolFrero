@@ -10,8 +10,8 @@ const Topnav = (props) => {
    const [Sidenav,setSidenav]=useState(false);
    console.log(Sidenav);
   return (
-    <div className='max-w-[1520px] mx-auto p-4'>
-        <div className='flex justify-between items-center'>
+    <div className='max-w-[1520px] mx-auto p-4 '>
+        <div className='flex justify-between items-center '>
             <div className='flex items-center'>
                 <div onClick={()=> setSidenav(!Sidenav)} className='cursor-pointer'>
                     <AiOutlineMenu size={25}/>
